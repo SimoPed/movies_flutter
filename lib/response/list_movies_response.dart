@@ -1,7 +1,7 @@
 class ListMoviesResponse {
   int? id;
   String? url;
-  late String name;
+  String? name;
   String? type;
   String? language;
   List<String>? genres;
@@ -26,7 +26,7 @@ class ListMoviesResponse {
   ListMoviesResponse(
       {this.id,
         this.url,
-        required this.name,
+        this.name,
         this.type,
         this.language,
         this.genres,

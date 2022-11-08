@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movies_flutter/movies/movies_bloc.dart';
 import 'package:movies_flutter/response/list_movies_response.dart';
+import 'package:movies_flutter/response/movies_page_state.dart';
 
 class ListMovies extends StatefulWidget {
   const ListMovies({super.key, required this.title});
@@ -13,6 +14,12 @@ class ListMovies extends StatefulWidget {
 
 class _ListMoviesState extends State<ListMovies> {
   final MoviesBloc _moviesBloc = MoviesBloc();
+
+  @override
+  void initState() {
+    _moviesBloc.retrieveMovies();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,11 +40,11 @@ class _ListMoviesState extends State<ListMovies> {
                 height: 150,
                 child: Padding(
                   padding: const EdgeInsets.all(10),
-                  child: FutureBuilder<ListMoviesResponse>(
-                    future: _moviesBloc.getMovies(),
+                  child: StreamBuilder<MoviesPageState>(
+                    stream: _moviesBloc.pageState?.stream,
                     builder: (context, snapshot) {
                       if (snapshot.hasData) {
-                        return Text(snapshot.data!.name);
+                        return Text(snapshot.data.name);
                       } else if(snapshot.hasError) {
                         return Text('${snapshot.error}');
                       }
