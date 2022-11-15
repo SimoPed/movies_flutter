@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:movies_flutter/movies/movies_bloc.dart';
 import 'package:movies_flutter/response/list_movies_response.dart';
@@ -14,7 +13,6 @@ class ListMovies extends StatefulWidget {
 }
 
 class _ListMoviesState extends State<ListMovies> {
-
   final MoviesBloc _moviesBloc = MoviesBloc();
   late Future<List<ListMoviesResponse>> _listMovies;
 
@@ -23,8 +21,6 @@ class _ListMoviesState extends State<ListMovies> {
     super.initState();
 
     _listMovies = _moviesBloc.getMovies();
-
-      print(_listMovies);
   }
 
   @override
@@ -43,7 +39,7 @@ class _ListMoviesState extends State<ListMovies> {
                   itemBuilder: (context, index) {
                     return FilmCard(
                         name: snapshot.data![index].name,
-                        genres: snapshot.data![index].genres.first,
+                        genres: snapshot.data![index].genres,
                         rating: snapshot.data![index].rating,
                         image: snapshot.data![index].image,
                         summary: snapshot.data![index].summary);
@@ -56,7 +52,6 @@ class _ListMoviesState extends State<ListMovies> {
               }
             },
           ),
-        )
-    );
+        ));
   }
 }

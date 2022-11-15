@@ -1,18 +1,18 @@
 class ListMoviesResponse {
   late int id;
   late String name;
-  late List<String> genres;
+  late String genres;
   late dynamic rating;
   late String image;
   late String summary;
 
   ListMoviesResponse(
       {required this.id,
-        required this.name,
-        required this.genres,
-        required this.rating,
-        required this.image,
-        required this.summary});
+      required this.name,
+      required this.genres,
+      required this.rating,
+      required this.image,
+      required this.summary});
 
   ListMoviesResponse.fromJson(Map<String, dynamic> json) {
     id = json['id'];

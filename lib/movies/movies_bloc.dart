@@ -4,7 +4,6 @@ import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
 
 class MoviesBloc {
-
   Future<List<ListMoviesResponse>> getMovies() async {
     var url = Uri.parse('https://api.tvmaze.com/shows');
     final response = await http.get(url);
@@ -17,9 +16,9 @@ class MoviesBloc {
         ListMoviesResponse list = ListMoviesResponse(
             id: element['id'],
             name: element['name'],
-            genres: element['genres'],
+            genres: element['genres'].toString(),
             rating: element['rating'],
-            image: element['image'],
+            image: element['image'].toString(),
             summary: element['summary']);
         moviesList.add(list);
       }
