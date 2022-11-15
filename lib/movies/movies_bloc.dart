@@ -17,8 +17,8 @@ class MoviesBloc {
             id: element['id'],
             name: element['name'],
             genres: element['genres'].toString(),
-            rating: element['rating'],
-            image: element['image'].toString(),
+            rating: element['rating']['average'],
+            image: element['image']['medium'].toString(),
             summary: element['summary']);
         moviesList.add(list);
       }

@@ -30,28 +30,29 @@ class _ListMoviesState extends State<ListMovies> {
           title: Text(widget.title),
         ),
         body: Center(
-          child: FutureBuilder<List<ListMoviesResponse>>(
-            future: _listMovies,
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                return ListView.builder(
-                  itemCount: snapshot.data!.length,
-                  itemBuilder: (context, index) {
-                    return FilmCard(
-                        name: snapshot.data![index].name,
-                        genres: snapshot.data![index].genres,
-                        rating: snapshot.data![index].rating,
-                        image: snapshot.data![index].image,
-                        summary: snapshot.data![index].summary);
-                  },
-                );
-              } else if (snapshot.hasError) {
-                return Text(snapshot.error.toString());
-              } else {
-                return const CircularProgressIndicator();
-              }
-            },
+            child: FutureBuilder<List<ListMoviesResponse>>(
+              future: _listMovies,
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  return ListView.builder(
+                    itemCount: snapshot.data!.length,
+                    itemBuilder: (context, index) {
+                      return FilmCard(
+                          name: snapshot.data![index].name,
+                          genres: snapshot.data![index].genres,
+                          rating: snapshot.data![index].rating,
+                          image: snapshot.data![index].image,
+                          summary: snapshot.data![index].summary);
+                    },
+                  );
+                } else if (snapshot.hasError) {
+                  return Text(snapshot.error.toString());
+                } else {
+                  return const CircularProgressIndicator();
+                }
+              },
+            ),
           ),
-        ));
+        );
   }
 }
