@@ -45,7 +45,8 @@ class FilmCard extends StatelessWidget {
                   ),
                   Text(genres[0]),
                   Text(summary),
-                  Text(rating.toString())
+                  Text(rating.toString()),
+                  Text(name)
                 ],
               ),
             ],
