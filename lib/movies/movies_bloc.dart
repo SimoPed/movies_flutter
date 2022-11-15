@@ -10,13 +10,20 @@ class MoviesBloc {
     final response = await http.get(url);
 
     if (response.statusCode == 200) {
-      List<ListMoviesResponse> responseMap = convert.jsonDecode(response.body);
-      List _temp = [];
+      var responseMap = convert.jsonDecode(response.body);
+      List<ListMoviesResponse> moviesList = [];
 
-      for(var element in responseMap) {
-        _temp.add(element);
+      for (var element in responseMap) {
+        ListMoviesResponse list = ListMoviesResponse(
+            id: element['id'],
+            name: element['name'],
+            genres: element['genres'],
+            rating: element['rating'],
+            image: element['image'],
+            summary: element['summary']);
+        moviesList.add(list);
       }
-      return ListMoviesResponse.contentsFromSnapshot(_temp);
+      return moviesList;
     } else {
       throw Exception('Something went wrong');
     }

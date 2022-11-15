@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class FilmCard extends StatelessWidget {
   final String name;
-  final List<String> genres;
+  final String genres;
   final dynamic rating;
   final String image;
   final String summary;

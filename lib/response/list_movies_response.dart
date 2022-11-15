@@ -23,9 +23,9 @@ class ListMoviesResponse {
     summary = json['summary'];
   }
 
-  static List<ListMoviesResponse> contentsFromSnapshot(List snapshot) {
-    return snapshot.map((e) {
-      return ListMoviesResponse.fromJson(e);
-    }).toList();
-  }
+  // static List<ListMoviesResponse> contentsFromSnapshot(List snapshot) {
+  //   return snapshot.map((e) {
+  //     return ListMoviesResponse.fromJson(e);
+  //   }).toList();
+  // }
 }
