@@ -13,19 +13,23 @@ class ListMovies extends StatefulWidget {
 }
 
 class _ListMoviesState extends State<ListMovies> {
+
   final MoviesBloc _moviesBloc = MoviesBloc();
   late List<ListMoviesResponse> _listMovies;
+  bool _isLoading = true;
 
   @override
   void initState() {
     super.initState();
 
-      retrieveMovies();
+    retrieveMovies();
   }
 
   Future<void> retrieveMovies() async {
     _listMovies = await _moviesBloc.getMovies();
-
+    setState(() {
+      _isLoading = false;
+    });
     print(_listMovies);
   }
 
@@ -35,19 +39,17 @@ class _ListMoviesState extends State<ListMovies> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            FilmCard(
-                name: 'Ciao',
-                genres: ['drama', 'fantasy'],
-                rating: 25,
-                image: 'image',
-                summary: 'summary'
-            )
-          ],
-        ),
+      body: _isLoading ? const Center(child: CircularProgressIndicator()) : ListView
+          .builder(
+        itemCount: _listMovies.length,
+        itemBuilder: (context, index) {
+          return FilmCard(
+              name: _listMovies[index].name,
+              genres: _listMovies[index].genres,
+              rating: _listMovies[index].rating,
+              image: _listMovies[index].image,
+              summary: _listMovies[index].summary);
+        },
       ),
     );
   }

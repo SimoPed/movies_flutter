@@ -7,14 +7,16 @@ class MoviesBloc {
 
   Future<List<ListMoviesResponse>> getMovies() async {
     var url = Uri.parse('https://api.tvmaze.com/shows');
-    var response = await http.get(url);
+    final response = await http.get(url);
+
     if (response.statusCode == 200) {
-      List<dynamic> responseMap = convert.jsonDecode(response.body);
-      List<Map<String, dynamic>> jsonList = [];
+      List<ListMoviesResponse> responseMap = convert.jsonDecode(response.body);
+      List _temp = [];
+
       for(var element in responseMap) {
-        jsonList.add(element);
+        _temp.add(element);
       }
-      return ListMoviesResponse.contentsFromSnapshot(jsonList);
+      return ListMoviesResponse.contentsFromSnapshot(_temp);
     } else {
       throw Exception('Something went wrong');
     }
