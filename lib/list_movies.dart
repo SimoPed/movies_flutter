@@ -52,7 +52,7 @@ class _ListMoviesState extends State<ListMovies> {
                             name: snapshot.data![index].name,
                             genres: snapshot.data![index].genres.replaceAll('[', '').replaceAll(']', ''),
                             rating: snapshot.data![index].rating,
-                            image: snapshot.data![index].image,
+                            image: snapshot.data![index].mediumImage,
                             summary: snapshot.data![index].summary.replaceAll('<b>', '').replaceAll('</b>', '').replaceAll('<p>', '')
                         ),
                       );

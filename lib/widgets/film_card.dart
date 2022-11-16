@@ -22,7 +22,17 @@ class FilmCard extends StatelessWidget {
       height: 150,
       margin: const EdgeInsets.all(8),
       decoration: BoxDecoration(
-          color: Colors.red, borderRadius: BorderRadius.circular(10)),
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(10),
+
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            spreadRadius: 3,
+            blurRadius: 3,
+          ),
+        ],
+      ),
       child: Padding(
         padding: const EdgeInsets.all(10),
         child: Row(
@@ -46,6 +56,7 @@ class FilmCard extends StatelessWidget {
                     child: Text(
                       name,
                       style: const TextStyle(
+                        color: Colors.black,
                         fontSize: 22,
                         fontWeight: FontWeight.bold,
                       ),
@@ -54,7 +65,8 @@ class FilmCard extends StatelessWidget {
                   ),
                   Text(
                     genres,
-                    style: const TextStyle(fontStyle: FontStyle.italic),
+                    style: const TextStyle(
+                        color: Colors.black, fontStyle: FontStyle.italic),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(
@@ -65,6 +77,9 @@ class FilmCard extends StatelessWidget {
                         summary,
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(
+                          color: Colors.black,
+                        ),
                       ),
                     ),
                   ),

@@ -3,7 +3,8 @@ class ListMoviesResponse {
   late String name;
   late String genres;
   late dynamic rating;
-  late String image;
+  late String mediumImage;
+  late String originalImage;
   late String summary;
 
   ListMoviesResponse(
@@ -11,7 +12,8 @@ class ListMoviesResponse {
       required this.name,
       required this.genres,
       required this.rating,
-      required this.image,
+      required this.mediumImage,
+      required this.originalImage,
       required this.summary});
 
   ListMoviesResponse.fromJson(Map<String, dynamic> json) {
@@ -19,13 +21,14 @@ class ListMoviesResponse {
     name = json['name'];
     genres = json['genres'].cast<String>();
     rating = json['rating'];
-    image = json['image'];
+    mediumImage = json['image'];
+    originalImage = json['image'];
     summary = json['summary'];
   }
 
-  // static List<ListMoviesResponse> contentsFromSnapshot(List snapshot) {
-  //   return snapshot.map((e) {
-  //     return ListMoviesResponse.fromJson(e);
-  //   }).toList();
-  // }
+// static List<ListMoviesResponse> contentsFromSnapshot(List snapshot) {
+//   return snapshot.map((e) {
+//     return ListMoviesResponse.fromJson(e);
+//   }).toList();
+// }
 }
