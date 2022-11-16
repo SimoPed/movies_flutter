@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movies_flutter/response/list_movies_response.dart';
 
 class DetailsMovies extends StatefulWidget {
   const DetailsMovies({super.key, required this.title});
@@ -11,11 +12,18 @@ class DetailsMovies extends StatefulWidget {
 }
 
 class _DetailsMoviesState extends State<DetailsMovies> {
+
   @override
   Widget build(BuildContext context) {
+
+    final id = ModalRoute.of(context)!.settings.arguments as ListMoviesResponse;
+
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
+      ),
+      body: Center(
+        child: Image.network(id.image),
       ),
     );
   }

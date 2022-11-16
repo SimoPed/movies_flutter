@@ -21,6 +21,7 @@ class MyApp extends StatelessWidget {
         ListMovies.route: (context) => const ListMovies(title: 'Movies'),
         DetailsMovies.route: (context) => const DetailsMovies(title: 'Details')
       },
+      initialRoute: ListMovies.route,
     );
   }
 }

@@ -11,6 +11,7 @@ class ListMovies extends StatefulWidget {
 
   final String title;
 
+
   @override
   State<ListMovies> createState() => _ListMoviesState();
 }
@@ -45,7 +46,7 @@ class _ListMoviesState extends State<ListMovies> {
                           primary: Colors.white,
                         ),
                         onPressed: () {
-                          Navigator.pushNamed(context, DetailsMovies.route, );
+                          Navigator.pushNamed(context, DetailsMovies.route, arguments: snapshot.data![index]);
                         },
                         child: FilmCard(
                             name: snapshot.data![index].name,
