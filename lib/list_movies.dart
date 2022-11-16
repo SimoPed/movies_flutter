@@ -42,7 +42,8 @@ class _ListMoviesState extends State<ListMovies> {
                           genres: snapshot.data![index].genres,
                           rating: snapshot.data![index].rating,
                           image: snapshot.data![index].image,
-                          summary: snapshot.data![index].summary);
+                          summary: snapshot.data![index].summary.replaceAll('<b>', '').replaceAll('</b>', '').replaceAll('<p>', '')
+                      );
                     },
                   );
                 } else if (snapshot.hasError) {

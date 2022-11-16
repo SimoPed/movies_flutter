@@ -34,7 +34,7 @@ class FilmCard extends StatelessWidget {
               ),
             ),
               SizedBox(
-                width: 200,
+                width: 250,
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -44,17 +44,26 @@ class FilmCard extends StatelessWidget {
                       child: Text(
                         name,
                         style: const TextStyle(
-                          fontSize: 25,
+                          fontSize: 22,
                           fontWeight: FontWeight.bold,
                         ),
                         textAlign: TextAlign.center,
-
                       ),
                     ),
                     Text(genres[0],),
-                    Text(summary, maxLines: 2,
+                    Align(
+                      alignment: FractionalOffset.center,
+                      child: Text(summary, maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                      ),
                     ),
-                    Text(rating.toString(),
+                    Align(
+                      alignment: FractionalOffset.bottomRight,
+                      child: Text(rating.toString(),
+                        style: const TextStyle(
+                          fontSize: 12
+                        ),
+                      ),
                     ),
                   ],
                 ),
