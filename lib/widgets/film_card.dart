@@ -20,7 +20,7 @@ class FilmCard extends StatelessWidget {
     return Container(
       width: 400,
       height: 150,
-      margin: const EdgeInsets.all(15),
+      margin: const EdgeInsets.all(8),
       decoration: BoxDecoration(
           color: Colors.red, borderRadius: BorderRadius.circular(10)),
       child: Padding(
@@ -35,7 +35,7 @@ class FilmCard extends StatelessWidget {
               ),
             ),
             SizedBox(
-              width: 280,
+              width: 260,
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -80,12 +80,12 @@ class FilmCard extends StatelessWidget {
                               padding: const EdgeInsets.only(
                                   left: 10, top: 0.5, right: 5, bottom: 0.5),
                               decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                color: Colors.green,
-                                image: const DecorationImage(
-                                  image: NetworkImage('https://iconsplace.com/wp-content/uploads/_icons/ffe500/256/png/rating-star-icon-19-256.png'),
-                                )
-                              ),
+                                  borderRadius: BorderRadius.circular(10),
+                                  color: Colors.green,
+                                  image: const DecorationImage(
+                                      image: AssetImage(
+                                    'assets/images/starIcon.png',
+                                  ))),
                               child: Text(
                                 rating.toString(),
                                 style: const TextStyle(

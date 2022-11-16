@@ -3,8 +3,11 @@ import 'package:movies_flutter/movies/movies_bloc.dart';
 import 'package:movies_flutter/response/list_movies_response.dart';
 import 'package:movies_flutter/widgets/film_card.dart';
 
+import 'details_movies.dart';
+
 class ListMovies extends StatefulWidget {
   const ListMovies({super.key, required this.title});
+  static const route = "/home";
 
   final String title;
 
@@ -37,12 +40,20 @@ class _ListMoviesState extends State<ListMovies> {
                   return ListView.builder(
                     itemCount: snapshot.data!.length,
                     itemBuilder: (context, index) {
-                      return FilmCard(
-                          name: snapshot.data![index].name,
-                          genres: snapshot.data![index].genres.replaceAll('[', '').replaceAll(']', ''),
-                          rating: snapshot.data![index].rating,
-                          image: snapshot.data![index].image,
-                          summary: snapshot.data![index].summary.replaceAll('<b>', '').replaceAll('</b>', '').replaceAll('<p>', '')
+                      return ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.white,
+                        ),
+                        onPressed: () {
+                          Navigator.pushNamed(context, DetailsMovies.route, );
+                        },
+                        child: FilmCard(
+                            name: snapshot.data![index].name,
+                            genres: snapshot.data![index].genres.replaceAll('[', '').replaceAll(']', ''),
+                            rating: snapshot.data![index].rating,
+                            image: snapshot.data![index].image,
+                            summary: snapshot.data![index].summary.replaceAll('<b>', '').replaceAll('</b>', '').replaceAll('<p>', '')
+                        ),
                       );
                     },
                   );

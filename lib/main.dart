@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movies_flutter/details_movies.dart';
 import 'package:movies_flutter/list_movies.dart';
 
 void main() {
@@ -16,6 +17,10 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: const ListMovies(title: 'Movies'),
+      routes: {
+        ListMovies.route: (context) => const ListMovies(title: 'Movies'),
+        DetailsMovies.route: (context) => const DetailsMovies(title: 'Details')
+      },
     );
   }
 }
