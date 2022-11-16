@@ -39,7 +39,7 @@ class _ListMoviesState extends State<ListMovies> {
                     itemBuilder: (context, index) {
                       return FilmCard(
                           name: snapshot.data![index].name,
-                          genres: snapshot.data![index].genres,
+                          genres: snapshot.data![index].genres.replaceAll('[', '').replaceAll(']', ''),
                           rating: snapshot.data![index].rating,
                           image: snapshot.data![index].image,
                           summary: snapshot.data![index].summary.replaceAll('<b>', '').replaceAll('</b>', '').replaceAll('<p>', '')

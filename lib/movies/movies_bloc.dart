@@ -19,7 +19,8 @@ class MoviesBloc {
             genres: element['genres'].toString(),
             rating: element['rating']['average'],
             image: element['image']['medium'].toString(),
-            summary: element['summary']);
+            summary: element['summary']
+        );
         moviesList.add(list);
       }
       return moviesList;
