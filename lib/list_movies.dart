@@ -6,6 +6,7 @@ import 'details_movies.dart';
 
 class ListMovies extends StatefulWidget {
   const ListMovies({super.key, required this.title});
+
   static const route = "/home";
 
   final String title;
@@ -28,42 +29,48 @@ class _ListMoviesState extends State<ListMovies> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text(widget.title),
-        ),
-        body: Center(
-            child: FutureBuilder<List<ListMoviesResponse>>(
-              future: _listMovies,
-              builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  return ListView.builder(
-                    itemCount: snapshot.data!.length,
-                    itemBuilder: (context, index) {
-                      return ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          primary: Colors.white,
-                        ),
-                        onPressed: () {
-                          Navigator.pushNamed(context, DetailsMovies.route, arguments: snapshot.data![index]);
-                        },
-                        child: FilmCard(
-                            name: snapshot.data![index].name,
-                            genres: snapshot.data![index].genres.replaceAll('[', '').replaceAll(']', ''),
-                            rating: snapshot.data![index].rating,
-                            image: snapshot.data![index].mediumImage,
-                            summary: snapshot.data![index].summary.replaceAll('<b>', '').replaceAll('</b>', '').replaceAll('<p>', '')
-                        ),
-                      );
+      appBar: AppBar(
+        title: Text(widget.title),
+      ),
+      body: Center(
+        child: FutureBuilder<List<ListMoviesResponse>>(
+          future: _listMovies,
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return ListView.builder(
+                itemCount: snapshot.data!.length,
+                itemBuilder: (context, index) {
+                  return ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.white,
+                    ),
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (
+                          context) => DetailsMovies(
+                          title: snapshot.data![index].name, id: snapshot.data![index].id)));
+                      // Navigator.pushNamed(context, DetailsMovies.route, arguments: snapshot.data![index].id);
                     },
+                    child: FilmCard(
+                        name: snapshot.data![index].name,
+                        genres: snapshot.data![index].genres.replaceAll('[', '')
+                            .replaceAll(']', ''),
+                        rating: snapshot.data![index].rating,
+                        image: snapshot.data![index].mediumImage,
+                        summary: snapshot.data![index].summary.replaceAll(
+                            '<b>', '').replaceAll('</b>', '').replaceAll(
+                            '<p>', '')
+                    ),
                   );
-                } else if (snapshot.hasError) {
-                  return Text(snapshot.error.toString());
-                } else {
-                  return const CircularProgressIndicator();
-                }
-              },
-            ),
-          ),
-        );
+                },
+              );
+            } else if (snapshot.hasError) {
+              return Text(snapshot.error.toString());
+            } else {
+              return const CircularProgressIndicator();
+            }
+          },
+        ),
+      ),
+    );
   }
 }

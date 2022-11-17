@@ -21,10 +21,10 @@ class ListMoviesResponse {
   ListMoviesResponse.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
-    genres = json['genres'].cast<String>();
-    rating = json['rating'];
-    mediumImage = json['image'];
-    originalImage = json['image'];
+    genres = json['genres'].cast<String>().toString();
+    rating = json['rating']['average'];
+    mediumImage = json['image']['medium'].toString();
+    originalImage = json['image']['original'].toString();
     summary = json['summary'];
     status = json['status'];
   }
