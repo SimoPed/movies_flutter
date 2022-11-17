@@ -10,7 +10,6 @@ class ListMovies extends StatefulWidget {
 
   final String title;
 
-
   @override
   State<ListMovies> createState() => _ListMoviesState();
 }
