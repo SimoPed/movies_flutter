@@ -20,8 +20,8 @@ class MoviesBloc {
             rating: element['rating']['average'],
             mediumImage: element['image']['medium'].toString(),
             originalImage: element['image']['original'].toString(),
-            summary: element['summary']
-        );
+            summary: element['summary'],
+            status: element['status']);
         moviesList.add(list);
       }
       return moviesList;

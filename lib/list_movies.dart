@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:movies_flutter/movies/movies_bloc.dart';
 import 'package:movies_flutter/response/list_movies_response.dart';
 import 'package:movies_flutter/widgets/film_card.dart';
-
 import 'details_movies.dart';
 
 class ListMovies extends StatefulWidget {

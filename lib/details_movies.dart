@@ -39,6 +39,10 @@ class _DetailsMoviesState extends State<DetailsMovies> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
+                  id.status,
+                  style: const TextStyle(color: Colors.white),
+                ),
+                Text(
                   id.genres.replaceAll('[', '').replaceAll(']', ''),
                   style: const TextStyle(color: Colors.white),
                 ),
@@ -59,20 +63,19 @@ class _DetailsMoviesState extends State<DetailsMovies> {
               Align(
                 alignment: Alignment.centerLeft,
                 child: Padding(
-                  padding:
-                      const EdgeInsets.only(left: 10, top: 1, right: 1, bottom: 1),
-                  child: Container(
-                      padding: const EdgeInsets.only(
-                          left: 10, top: 0.5, right: 5, bottom: 0.5),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.green,
-                          image: const DecorationImage(
-                              image: AssetImage(
-                                'assets/images/starIcon.png',
-                              ))),
-                      child: Text(id.rating.toString()))
-                ),
+                    padding: const EdgeInsets.only(
+                        left: 10, top: 1, right: 1, bottom: 1),
+                    child: Container(
+                        padding: const EdgeInsets.only(
+                            left: 10, top: 0.5, right: 5, bottom: 0.5),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.green,
+                            image: const DecorationImage(
+                                image: AssetImage(
+                              'assets/images/starIcon.png',
+                            ))),
+                        child: Text(id.rating.toString()))),
               ),
             ],
           ),
