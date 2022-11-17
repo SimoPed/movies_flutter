@@ -17,8 +17,11 @@ class FilmCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    double widthScreen = MediaQuery.of(context).size.width;
+
     return Container(
-      width: 400,
+      width: widthScreen * 0.9,
       height: 150,
       margin: const EdgeInsets.all(8),
       decoration: BoxDecoration(
@@ -45,7 +48,7 @@ class FilmCard extends StatelessWidget {
               ),
             ),
             SizedBox(
-              width: 260,
+              width: widthScreen * 0.5,
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.center,
