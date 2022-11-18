@@ -33,40 +33,112 @@ class _DetailsMoviesState extends State<DetailsMovies> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: FutureBuilder<ListMoviesResponse>(
-        future: _details,
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            return Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Container(
-                  // width: MediaQuery.of(context).size.width,
-                  // height: MediaQuery.of(context).size.height,
-                  decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: NetworkImage(snapshot.data!.originalImage),
-                          fit: BoxFit.cover)),
-                  // child: Image.network(
-                  // snapshot.data!.originalImage,
-                  //   fit: BoxFit.cover,
-                  //   height: MediaQuery.of(context).size.height,
-                  //   width: MediaQuery.of(context).size.width,
-                  // ),
-                ),
-                Text(snapshot.data!.name),
-                Text(snapshot.data!.genres.toString()),
-                Text(snapshot.data!.rating.toString()),
-                Text(snapshot.data!.summary),
-              ],
-            );
-          } else if (snapshot.hasError) {
-            return Text(snapshot.error.toString());
-          } else {
-            return const CircularProgressIndicator();
-          }
-        },
+      body: Center(
+        child: FutureBuilder<ListMoviesResponse>(
+          future: _details,
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return Column(
+                children: [
+                  Stack(
+                    children: [
+                      Image.network(
+                        snapshot.data!.originalImage,
+                        fit: BoxFit.cover,
+                      ),
+                      Positioned.fill(
+                        child: Align(
+                          alignment: Alignment.center,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.all(12),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20),
+                                    color: Colors.black38,
+                                  ),
+                                  child: Column(
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Text(
+                                          snapshot.data!.name,
+                                          style: const TextStyle(
+                                              fontSize: 30,
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.white),
+                                        ),
+                                      ),
+                                      Container(
+                                        padding: const EdgeInsets.only(
+                                            left: 50,
+                                            top: 0.5,
+                                            right: 0.5,
+                                            bottom: 0.5),
+                                        decoration: const BoxDecoration(
+                                            //     borderRadius: BorderRadius.circular(10),
+                                            //     color: Colors.green,
+                                            image: DecorationImage(
+                                          image: AssetImage(
+                                              'assets/images/starIcon.png'),
+                                        )),
+                                        child: Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 10, vertical: 0),
+                                          child: Text(
+                                            snapshot.data!.rating.toString(),
+                                            style: const TextStyle(
+                                                color: Colors.white),
+                                          ),
+                                        ),
+                                        // Image.asset('assets/images/starIcon.png', width: 10, height: 10,)
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Text(
+                                          snapshot.data!.genres
+                                              .toString()
+                                              .replaceAll('[', '')
+                                              .replaceAll(']', ''),
+                                          style: const TextStyle(
+                                              fontStyle: FontStyle.italic,
+                                              color: Colors.white),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Text(
+                                            snapshot.data!.summary
+                                                .replaceAll('<b>', '')
+                                                .replaceAll('</b>', '')
+                                                .replaceAll('<p>', '')
+                                                .replaceAll('</p>', '')
+                                                .replaceAll('<i>', '')
+                                                .replaceAll('</i>', ''),
+                                            style: const TextStyle(
+                                                color: Colors.white), textAlign: TextAlign.center,),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              );
+            } else if (snapshot.hasError) {
+              return Text(snapshot.error.toString());
+            } else {
+              return const CircularProgressIndicator();
+            }
+          },
+        ),
       ),
     );
   }
