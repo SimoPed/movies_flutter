@@ -15,15 +15,33 @@ class ListMovies extends StatefulWidget {
   State<ListMovies> createState() => _ListMoviesState();
 }
 
-class _ListMoviesState extends State<ListMovies> {
+class _ListMoviesState extends State<ListMovies> with SingleTickerProviderStateMixin{
   final MoviesBloc _moviesBloc = MoviesBloc();
   late Future<List<ListMoviesResponse>> _listMovies;
+  late AnimationController controller;
 
   @override
   void initState() {
     super.initState();
 
+    controller =  AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 2),
+    );
+
+    controller.addListener(() {
+      setState(() {
+
+      });
+    });
+
     _listMovies = _moviesBloc.getMovies();
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
   }
 
   @override
@@ -45,21 +63,27 @@ class _ListMoviesState extends State<ListMovies> {
                       primary: Colors.white,
                     ),
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (
-                          context) => DetailsMovies(
-                          title: snapshot.data![index].name, id: snapshot.data![index].id)));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => DetailsMovies(
+                                  title: snapshot.data![index].name,
+                                  id: snapshot.data![index].id)));
                       // Navigator.pushNamed(context, DetailsMovies.route, arguments: snapshot.data![index].id);
                     },
                     child: FilmCard(
                         name: snapshot.data![index].name,
-                        genres: snapshot.data![index].genres.replaceAll('[', '')
+                        genres: snapshot.data![index].genres
+                            .replaceAll('[', '')
                             .replaceAll(']', ''),
                         rating: snapshot.data![index].rating,
                         image: snapshot.data![index].mediumImage,
-                        summary: snapshot.data![index].summary.replaceAll(
-                            '<b>', '').replaceAll('</b>', '').replaceAll(
-                            '<p>', '')
-                    ),
+                        summary: snapshot.data![index].summary
+                            .replaceAll('<b>', '')
+                            .replaceAll('</b>', '')
+                            .replaceAll('<p>', '')
+                            .replaceAll('<i>', '')
+                            .replaceAll('</i>', '')),
                   );
                 },
               );
