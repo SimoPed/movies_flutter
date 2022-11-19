@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movies_flutter/animations/animaiton_page_route.dart';
 import 'package:movies_flutter/movies/movies_bloc.dart';
 import 'package:movies_flutter/response/list_movies_response.dart';
 import 'package:movies_flutter/widgets/film_card.dart';
@@ -15,7 +16,8 @@ class ListMovies extends StatefulWidget {
   State<ListMovies> createState() => _ListMoviesState();
 }
 
-class _ListMoviesState extends State<ListMovies> with SingleTickerProviderStateMixin{
+class _ListMoviesState extends State<ListMovies>
+    with SingleTickerProviderStateMixin {
   final MoviesBloc _moviesBloc = MoviesBloc();
   late Future<List<ListMoviesResponse>> _listMovies;
   late AnimationController controller;
@@ -24,15 +26,13 @@ class _ListMoviesState extends State<ListMovies> with SingleTickerProviderStateM
   void initState() {
     super.initState();
 
-    controller =  AnimationController(
+    controller = AnimationController(
       vsync: this,
       duration: const Duration(seconds: 2),
     );
 
     controller.addListener(() {
-      setState(() {
-
-      });
+      setState(() {});
     });
 
     _listMovies = _moviesBloc.getMovies();
@@ -65,11 +65,17 @@ class _ListMoviesState extends State<ListMovies> with SingleTickerProviderStateM
                     onPressed: () {
                       Navigator.push(
                           context,
-                          MaterialPageRoute(
-                              builder: (context) => DetailsMovies(
+                          AnimationPageRoute(
+                              widget: DetailsMovies(
                                   title: snapshot.data![index].name,
-                                  id: snapshot.data![index].id)));
-                      // Navigator.pushNamed(context, DetailsMovies.route, arguments: snapshot.data![index].id);
+                                  id: snapshot.data![index].id))
+
+                          // MaterialPageRoute(
+                          //     builder: (context) => DetailsMovies(
+                          //         title: snapshot.data![index].name,
+                          //         id: snapshot.data![index].id)));
+                          // Navigator.pushNamed(context, DetailsMovies.route, arguments: snapshot.data![index].id);
+                          );
                     },
                     child: FilmCard(
                         name: snapshot.data![index].name,
