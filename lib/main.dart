@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:movies_flutter/details_movies.dart';
 import 'package:movies_flutter/list_movies.dart';
-import 'package:movies_flutter/movies/movie_details.dart';
-import 'package:movies_flutter/movies/movies_bloc.dart';
 
 void main() {
   runApp(const MyApp());

@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import '../details_movies.dart';
 
 class AnimationPageRoute extends PageRouteBuilder {
   final Widget widget;

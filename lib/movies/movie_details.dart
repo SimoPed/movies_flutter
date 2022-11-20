@@ -1,5 +1,3 @@
-import 'package:movies_flutter/details_movies.dart';
-import 'package:movies_flutter/movies/movies_bloc.dart';
 import 'package:movies_flutter/response/list_movies_response.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
