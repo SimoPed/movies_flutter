@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:movies_flutter/animations/animaiton_page_route.dart';
+import 'package:movies_flutter/animations/animation_page_route.dart';
 import 'package:movies_flutter/movies/movies_bloc.dart';
 import 'package:movies_flutter/response/list_movies_response.dart';
 import 'package:movies_flutter/widgets/film_card.dart';

@@ -67,6 +67,8 @@ class FilmCard extends StatelessWidget {
                   ),
                   Text(
                     genres,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
                     style: const TextStyle(
                         color: Colors.black, fontStyle: FontStyle.italic),
                   ),
