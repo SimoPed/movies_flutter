@@ -5,7 +5,6 @@ class AnimationPageRoute extends PageRouteBuilder {
 
   AnimationPageRoute({required this.widget})
       : super(
-
           transitionDuration: const Duration(seconds: 1),
           transitionsBuilder: (context, animation, secondaryAnimation, child) {
             animation =
@@ -17,7 +16,6 @@ class AnimationPageRoute extends PageRouteBuilder {
               child: child,
             );
           },
-
           pageBuilder: (context, animation, secondaryAnimation) {
             return widget;
           },

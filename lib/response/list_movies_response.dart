@@ -4,7 +4,6 @@ class ListMoviesResponse {
   late String genres;
   late dynamic rating;
   late String mediumImage;
-  late String originalImage;
   late String summary;
   late String status;
 
@@ -14,7 +13,6 @@ class ListMoviesResponse {
       required this.genres,
       required this.rating,
       required this.mediumImage,
-      required this.originalImage,
       required this.summary,
       required this.status});
 
@@ -24,7 +22,6 @@ class ListMoviesResponse {
     genres = json['genres'].cast<String>().toString();
     rating = json['rating']['average'];
     mediumImage = json['image']['medium'].toString();
-    originalImage = json['image']['original'].toString();
     summary = json['summary'];
     status = json['status'];
   }
