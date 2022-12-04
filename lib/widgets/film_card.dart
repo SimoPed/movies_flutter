@@ -46,7 +46,7 @@ class FilmCard extends StatelessWidget {
               ),
             ),
             SizedBox(
-              width: widthScreen * 0.55,
+              width: widthScreen * 0.6,
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -65,12 +65,16 @@ class FilmCard extends StatelessWidget {
                       textAlign: TextAlign.center,
                     ),
                   ),
-                  Text(
-                    genres,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
-                        color: Colors.black, fontStyle: FontStyle.italic),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 5),
+                    child: Text(
+                      genres,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                          color: Colors.black, fontStyle: FontStyle.italic),
+                    ),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(
@@ -80,6 +84,7 @@ class FilmCard extends StatelessWidget {
                       child: Text(
                         summary,
                         maxLines: 2,
+                        textAlign: TextAlign.center,
                         overflow: TextOverflow.ellipsis,
                         style: const TextStyle(
                           color: Colors.black,

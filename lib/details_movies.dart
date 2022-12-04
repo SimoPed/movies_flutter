@@ -39,7 +39,8 @@ class _DetailsMoviesState extends State<DetailsMovies> {
     setState(() => liked = !liked);
     final prefs = await SharedPreferences.getInstance();
     prefs.setBool(likedKey, liked);
-    print(prefs.getInt(id));
+    var idMovies = prefs.setInt('id_movie', id);
+    print(idMovies);
   }
 
   @override
@@ -72,7 +73,7 @@ class _DetailsMoviesState extends State<DetailsMovies> {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         IconButton(
-                            onPressed: _persistencePreferences(snapshot.data!.id),
+                            onPressed: () => {_persistencePreferences(snapshot.data!.id)},
                             icon: liked ? const Icon(Icons.favorite) : const Icon(Icons.favorite_border),
                             color: liked ? Colors.red : Colors.white),
                       ],
