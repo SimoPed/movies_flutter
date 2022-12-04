@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movies_flutter/movies/movie_details.dart';
 import 'package:movies_flutter/response/movie_details_response.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class DetailsMovies extends StatefulWidget {
   const DetailsMovies({super.key, required this.title, required this.id});
@@ -17,13 +18,28 @@ class DetailsMovies extends StatefulWidget {
 class _DetailsMoviesState extends State<DetailsMovies> {
   final MovieDetails _movieDetails = MovieDetails();
   late Future<MovieDetailsResponse> _details;
-  bool like = false;
+  late bool liked = false;
+  static const likedKey = 'liked_key';
 
   @override
   void initState() {
     super.initState();
 
     _details = _movieDetails.getDetailMovie(id: widget.id);
+    _restorePersistencePreferences();
+  }
+
+  void _restorePersistencePreferences() async {
+    final prefs = await SharedPreferences.getInstance();
+    var liked = prefs.getBool(likedKey);
+    setState(() => this.liked = liked!);
+}
+
+  _persistencePreferences(id) async {
+    setState(() => liked = !liked);
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setBool(likedKey, liked);
+    print(prefs.getInt(id));
   }
 
   @override
@@ -56,9 +72,9 @@ class _DetailsMoviesState extends State<DetailsMovies> {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         IconButton(
-                            onPressed: () => {setState(() => like = !like)},
-                            icon: const Icon(Icons.favorite_border),
-                            color: like ? Colors.red : Colors.white),
+                            onPressed: _persistencePreferences(snapshot.data!.id),
+                            icon: liked ? const Icon(Icons.favorite) : const Icon(Icons.favorite_border),
+                            color: liked ? Colors.red : Colors.white),
                       ],
                     ),
                   ),
