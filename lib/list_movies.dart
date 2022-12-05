@@ -69,12 +69,6 @@ class _ListMoviesState extends State<ListMovies>
                               widget: DetailsMovies(
                                   title: snapshot.data![index].name,
                                   id: snapshot.data![index].id))
-
-                          // MaterialPageRoute(
-                          //     builder: (context) => DetailsMovies(
-                          //         title: snapshot.data![index].name,
-                          //         id: snapshot.data![index].id)));
-                          // Navigator.pushNamed(context, DetailsMovies.route, arguments: snapshot.data![index].id);
                           );
                     },
                     child: FilmCard(

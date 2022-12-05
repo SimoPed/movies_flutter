@@ -46,7 +46,7 @@ class FilmCard extends StatelessWidget {
               ),
             ),
             SizedBox(
-              width: widthScreen * 0.6,
+              width: widthScreen * 0.55,
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.center,
